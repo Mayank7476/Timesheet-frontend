@@ -1,0 +1,150 @@
+.report-bodies{
+  padding: 20px 30px;
+  min-height: 100%;
+  background: linear-gradient(135deg, #f4fbfc, #e6f7f9);
+  font-family: "Inter", "Segoe UI", sans-serif;
+  animation: fadeInPage 0.6s ease;
+}
+.report-table{
+    width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 30px rgba(0, 119, 182, 0.08);
+  font-size: var(--table-font);
+}
+.report-table thead{
+    background: var(--tomato);
+  color: white;
+}
+.report-table th {
+  padding: 12px 20px;
+  text-align: left;
+  font-weight: 500;
+}
+.report-table td {
+  padding: 10px 20px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  color: var(--text-dark);
+}
+
+.report-table tbody tr:nth-child(even) {
+  background: rgba(255,255,255,0.35);
+}
+
+.report-table tbody tr:hover {
+  background: rgba(255,255,255,0.6);
+}
+
+
+/*filter*/
+.report-filters{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: var(--green);
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Labels */
+.report-filters label{
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Date Inputs */
+.report-filters input{
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: rgba(255,255,255,0.9);
+  transition: 0.2s;
+}
+
+/* Input Hover */
+.report-filters input:hover{
+  background: white;
+}
+
+/* Input Focus */
+.report-filters input:focus{
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+/* Generate Button */
+.report-filters .new-buttonof{
+  margin-left: auto;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 20px;
+  background: white;
+  color: var(--tomato);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Export Excel Button */
+.report-filters .export-button{
+  padding: 8px 18px;
+  border: none;
+  border-radius: 20px;
+  background: #2e7d32;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: 10px;
+}
+
+/* Hover effect */
+.report-filters .export-button:hover{
+  background: #1b5e20;
+  transform: translateY(-1px);
+}
+
+
+/* Button Hover */
+.report-filters .new-buttonof:hover{
+  background: var(--tomato);
+  color: white;
+  transform: translateY(-1px);
+}   
+
+.employee-row {
+  cursor: pointer;
+}
+
+.employee-row:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.inner-table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+.inner-table th,
+.inner-table td {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+}
+
+@media (max-width: 1024px) {
+  .report-filters {
+    display: flex;
+    flex-direction: column;
+  }
+}

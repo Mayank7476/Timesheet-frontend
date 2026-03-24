@@ -1,0 +1,30 @@
+.header{
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  background: white;
+ border-bottom: 1px solid black;
+  font-weight: 600;
+  z-index: 2000;
+}
+.header-logo{
+  height: 50px;
+  width: 55px;
+  background-color: #FFFFFF;
+  border-radius: 20%;
+}
+
+.header-logout{
+  border: none;
+  background: #FFFFFF;
+  color: var(--green);
+  padding: 6px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}

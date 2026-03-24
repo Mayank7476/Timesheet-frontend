@@ -1,0 +1,165 @@
+
+
+/* ==========================================
+  SIDEBAR WRAPPER (Flex Push Layout)
+========================================== */
+
+.back {
+  width: 240px;
+  transition: width 0.3s ease;
+  overflow: visible;
+  flex-shrink: 0;
+  height: 100vh;
+}
+
+.back.closed {
+  width: 60px;
+}
+
+/* When sidebar is CLOSED */
+.back.closed .navbar-links li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  margin: 10px auto;
+  padding: 0;
+  border-radius: 50%;
+  overflow: visible;
+}
+
+.back.closed .text {
+  display: none;
+}
+
+.back.closed .navbar {
+  width: 58px;
+  padding: 25px 5px;
+}
+
+.back.closed .icon {
+  font-size: 18px;
+}
+
+/* Active link when sidebar is CLOSED */
+.back.closed .navbar-links li a.active {
+  background: #086F3C;
+  color: #FFFFFF;
+  border-radius: 50%;
+}
+
+.sidebar-wrapper {
+  display: flex;
+}
+
+/* ==========================================
+  SIDEBAR CONTAINER
+========================================== */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+
+  width: 240px;
+  height: calc(100vh - 60px);
+  margin-top: 60px;
+  overflow: visible;
+  padding: 25px 15px;
+  display: flex;
+  scrollbar-width: none;
+  flex-direction: column;
+  backdrop-filter: blur(18px);
+  background: #FFFFFF;
+  border-right: 1px solid #086F3C;
+  box-shadow: 6px 0 20px rgba(0,0,0,0.08);
+  z-index: 1100;
+}
+
+/* ==========================================
+  LINKS
+========================================== */
+
+.navbar-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  margin-top: 32px;
+}
+
+.back.closed .navbar-links li {
+  position: relative;
+}
+
+.navbar-links li {
+  margin-bottom: 10px;
+}
+
+.navbar-links a {
+  display: block;
+  padding: 12px 15px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: #086F3C;
+  font-size: var(--table-font);
+  font-weight: 500;
+  
+}
+
+.navbar-links a:hover {
+  background: #FFFFFF;
+  transform: scale(0.90);
+}
+
+.back.closed .navbar-links a:hover {
+  transform: scale(0.85);
+}
+
+.navbar-links a.active {
+  background: #F2652C;
+  color: #FFFFFF;
+}
+
+/* ==========================================
+  TOOLTIP WHEN SIDEBAR CLOSED
+========================================== */
+
+.back.closed .navbar-links li:hover .text {
+  display: block;
+  position: absolute;
+
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: #FFFFFF;
+  color: #086F3C;
+  padding: 8px 14px;
+  border-radius: 8px;
+
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+
+  font-size: 20px;
+  font-weight: 500;
+  z-index: 9999;
+}
+
+
+
+.toggle-btn {
+  position: fixed;
+  top: 5px;
+  left: 10px;
+  z-index: 9999;
+  background: #086F3C;
+  border: none;
+  color: #FFFFFF;
+  font-size: 20px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}

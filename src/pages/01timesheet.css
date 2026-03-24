@@ -1,0 +1,214 @@
+
+/* ==========================================
+   PAGE BACKGROUND (Slim + Centered)
+========================================== */
+
+.bodies {
+  
+  padding: 20px 30px;
+  min-height: 100%;
+  background: linear-gradient(135deg, #f4fbfc, #e6f7f9);
+  font-family: "Inter", "Segoe UI", sans-serif;
+ animation: fadeInPage 0.6s ease;
+}
+
+
+
+
+/* ==========================================
+   All pages TITLE
+========================================== */
+
+.page-title{
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 20px;
+  
+}
+
+/* ==========================================
+   WEEK NAVIGATION (Compact)
+========================================== */
+
+.week-nav {
+  display: flex;
+  width:95%;
+  margin-left: 2.5%;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--green);
+  color: var(--safeyd) ;
+  padding: 10px 20px;     /* reduced */
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 180, 216, 0.2);
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.week-nav span {
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.week-nav span:hover {
+  transform: scale(1.15);
+}
+.tableupper{
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================
+   TABLE BOX (Slim & Clean)
+========================================== */
+
+.table-box {
+  width: 95%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 119, 182, 0.07);
+}
+
+/* HEADER */
+.table-box thead {
+  background: var(--tomato);
+  color: var(--safeyd);
+}
+
+.table-box th {
+  padding: 8px 6px;      /* reduced */
+  font-size: var(--table-font);
+  font-weight: 500;
+  text-align: left;
+  
+}
+
+/* BODY */
+.table-box td {
+  padding: 9px;          /* reduced */
+  text-align: left;
+  font-size: var(--table-font);
+  color: var(--kala);
+  border-bottom: 1px solid var(--border);
+  transition: 0.2s ease;
+}
+
+/* Alternate row */
+.table-box tbody tr:nth-child(even) {
+  background: #f8feff;
+}
+
+/* Hover */
+.table-box tbody tr:hover {
+  background: var(--hover-row);
+}
+
+/* TOTAL ROW */
+.table-box tbody tr:last-child {
+  background: var(--total-bg);
+  font-weight: 600;
+}
+
+/* ==========================================
+   INPUT FIELDS (Slim)
+========================================== */
+
+.table-box input[type="number"] {
+  width: 55px;           /* smaller */
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f8feff;
+  font-size: var(--table-font);
+  text-align: left;
+  transition: 0.2s ease;
+}
+
+.table-box input[type="number"]:focus {
+  outline: none;
+  border-color: var(--sea);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
+}
+
+/* Disabled */
+.table-box input:disabled {
+  background: #e6f2f4;
+  cursor: not-allowed;
+}
+
+/* Checkbox */
+.table-box input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--sea);
+  cursor: pointer;
+}
+
+/* ==========================================
+   BUTTONS (Compact)
+========================================== */
+
+.btn-con {
+  margin-top: 25px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-right: 3%;
+}
+
+.submit-save {
+  padding: 10px 24px;   /* reduced */
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+/* Save */
+.submit-save:first-child {
+  background: #086F3C;
+  color: #ffffff;
+}
+
+.submit-save:first-child:hover {
+  transform: translateY(-2px);
+  background: #74c69d;
+}
+
+/* Submit */
+.submit-save:last-child {
+  background: #F2652C;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 180, 216, 0.25);
+}
+
+.submit-save:last-child:hover {
+  transform: translateY(-3px);
+}
+
+/* Disabled */
+.submit-save:disabled {
+  background: #cce3e7;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1024px) {
+  .bodies {
+    margin-left: 0;
+    padding: 20px;
+  }
+}

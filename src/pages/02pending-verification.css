@@ -1,0 +1,237 @@
+/* ==========================================
+   OCEANIC LIGHT BREEZE – COMPACT VERSION
+   No Scroll Popup • Clean • Professional
+========================================== */
+
+
+
+/* ==========================================
+   PAGE CONTAINER                                                                                                                             
+========================================== */
+
+.pending-container {
+  
+  padding: 20px 30px;
+  min-height: 100%;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #f4fbfc, #e6f7f9);
+  animation: fadeInPage 0.6s ease;
+ 
+}
+
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.timesheet-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 30px rgba(0, 119, 182, 0.08);
+  font-size: var(--table-font);
+}
+
+.timesheet-table thead {
+  background: var(--tomato);
+  color: white;
+}
+
+.timesheet-table th {
+  padding: 12px 20px;
+  text-align: left;
+  font-weight: 500;
+}
+
+.timesheet-table td {
+  padding: 10px 20px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  color: var(--text-dark);
+}
+
+.timesheet-table tbody tr:nth-child(even) {
+  background: rgba(255,255,255,0.35);
+}
+
+.timesheet-table tbody tr:hover {
+  background: rgba(255,255,255,0.6);
+}
+
+/* Empty row */
+.empty-row {
+  padding: 25px;
+  color: var(--text-light);
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.action-btn {
+  padding: 6px 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-right: 6px;
+  transition: 0.3s ease;
+}
+
+.verify-btn {
+  background: var(--green);
+  color: white;
+}
+
+.verify-btn:hover {
+  transform: translateY(-2px);
+}
+
+.reject-btn {
+  background: var(--green);
+  color: white;
+}
+
+.reject-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   MODAL OVERLAY (NO SCROLL)
+========================================== */
+
+.modal-overlay {
+ width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  
+}
+
+/* ==========================================
+   COMPACT MODAL BOX (NO SCROLL)
+========================================== */
+
+.modalbox {
+  width: 100%;
+  max-width: 100000px;
+  margin-top: 1%;
+  
+  
+  border-radius: 20px;
+  padding: 18px 22px;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  animation: popIn 0.3s ease;
+ 
+
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modalbox h3 {
+  margin-bottom: 15px;
+  font-size: 25px;
+  color: var(--green);
+}
+
+/* Compact table inside modal */
+.modalbox .timesheet-table {
+  font-size: var(--table-font);
+}
+
+.modalbox .timesheet-table th,
+.modalbox .timesheet-table td {
+  padding: 6px 4px;
+}
+
+/* Smaller inputs */
+.modalbox input[type="number"] {
+  width: 35px;
+  padding: 1.5px;
+  font-size: var(--table-font);
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.modalbox input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--sea);
+}
+/* ==========================================
+   SAVE / CLOSE BUTTONS
+========================================== */
+
+.save-btn,
+.close-btn {
+  margin-top: 15px;
+  padding: 7px 16px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.save-btn {
+  background: linear-gradient(135deg, #00b4d8, #2ec4b6);
+  color: white;
+  margin-right: 10px;
+}
+
+.save-btn:hover {
+  transform: translateY(-2px);
+}
+
+.close-btn {
+  background: #94d2bd;
+  color: #073b4c;
+}
+
+.close-btn:hover {
+  transform: translateY(-2px);
+}
+.total-3 td {
+  text-align: left;
+  font-weight: 600;
+}
+
+.total-3 td:nth-child(2) {
+  text-align: center;
+  
+}
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1024px) {
+  .pending-container {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .modaloverlay {
+    left: 0;
+  }
+  .modalbox {
+    width: 95%;
+  }
+}

@@ -1,0 +1,50 @@
+/* Reset root so layout can be full width */
+
+:root {
+  --tomato:#F2652C;
+  --green:#086F3C;
+  --safeyd:white;
+  --card-bg:#b0d6db00;
+  --kala:black;
+  --borderpa: rgba(255, 255, 255, 0.4); /*project assignment table border*/
+  --table-font:13px;
+  --font-pop-up:13px;
+
+  
+}
+
+/* Main layout wrapper */
+.layout {
+  display: flex !important;
+  overflow: hidden;
+  min-height: 100%;
+}
+
+
+/* Page content area */
+.page-content {
+  flex: 1; /* always flex */
+  height: 100vh;
+  scrollbar-width: none;    
+  max-width: 100%;      /* default full width */       /* default aligned with sidebar */
+  margin-right: 0;
+  overflow-y: auto;
+ 
+}
+.with-header {
+  padding-top: 60px;
+}
+
+/* login page */
+.full-page {
+  padding-top: 0;
+}
+
+/* When sidebar is closed */
+.page-content.centered {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+

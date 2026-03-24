@@ -1,0 +1,109 @@
+
+
+/* ==========================================
+   MAIN CONTAINER
+========================================== */
+
+.history-container {
+  
+  min-height: 100%;
+  padding: 20px 30px;
+  background: linear-gradient(135deg, #f4fbfc, #e6f7f9);
+  font-family: "Inter", "Segoe UI", sans-serif;
+  animation: fadeInPage 0.6s ease;
+}
+
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/* ==========================================
+   TABS
+========================================== */
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.tab {
+  padding: 10px 22px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  color: var(--text-dark);
+  transition: 0.3s ease;
+  border: 1px solid black;
+}
+
+.tab:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* Active Tab */
+.tab.active {
+  background: var(--green);
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 180, 216, 0.3);
+  }
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.history-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  backdrop-filter: blur(15px);
+  background: var(--glass);
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 40px rgba(0, 119, 182, 0.1);
+}
+
+.history-table th,
+.history-table td {
+  padding: 14px 20px;
+  text-align: left;
+  font-size:var(--table-font);
+  
+}
+
+.history-table thead {
+  background: var(--tomato) ;
+  color: white;
+}
+
+.history-table tbody tr {
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  transition: 0.2s ease;
+}
+
+.history-table tbody tr:nth-child(even) {
+  background: rgba(255,255,255,0.35);
+}
+
+.history-table tbody tr:hover {
+  background: rgba(255,255,255,0.6);
+  transform: scale(1.01);
+}
+
+/* ==========================================
+   EMPTY / LOADING TEXT
+========================================== */
+
+.history-container p {
+  text-align: left;
+  margin-top: 20px;
+}

@@ -1,0 +1,144 @@
+
+/* ==========================================
+   MAIN CONTAINER
+========================================== */
+
+.leave-container {
+
+  min-height: 100%;
+  padding: 20px 30px;
+  background: linear-gradient(135deg, #f4fbfc, #e6f7f9);
+  font-family: "Inter", "Segoe UI", sans-serif;
+  animation: fadeInPage 0.6s ease;
+}
+
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/* ==========================================
+   CALENDAR HEADER
+========================================== */
+
+.calendar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.calendar-header h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* Navigation Buttons */
+.calendar-header button {
+  padding: 8px 16px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  background: var(--green);
+  color: white;
+  transition: 0.3s ease;
+  box-shadow: 0 8px 18px rgba(0, 180, 216, 0.25);
+}
+
+.calendar-header button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 180, 216, 0.35);
+}
+
+/* ==========================================
+   CALENDAR GRID
+========================================== */
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  backdrop-filter: blur(15px);
+  background: var(--glass);
+  padding: 20px;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 40px rgba(0, 119, 182, 0.1);
+}
+
+/* Header Row */
+.calendar-grid-header {
+  display: flex;
+  flex-direction: row;
+ justify-content: space-around;
+  background: var(--tomato);
+  color: white;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 18px;
+}
+
+/* Day Names */
+.day-name {
+  text-align: center;
+  font-weight: 500;
+  padding: 8px 0;
+}
+
+/* Empty Cell */
+.empty {
+  height: 50px;
+}
+
+/* Calendar Day */
+.calendar-day {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 14px;
+  cursor: default;
+  transition: 0.3s ease;
+  background: rgba(255, 255, 255, 0.35);
+  color: var(--text-dark);
+}
+
+.calendar-day:hover {
+  background: #e9e6e6;
+  color:var(--tomato);
+  transform: translateY(-3px);
+}
+
+/* Leave Day Highlight */
+.leave-day {
+  background: var(--green);
+  color: var(--safeyd);
+  font-weight: 600;
+ 
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+  .leave-container {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .calendar-grid {
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .calendar-day {
+    height: 45px;
+    font-size: var(--table-font);
+  }
+}

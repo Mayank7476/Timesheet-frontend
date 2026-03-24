@@ -1,0 +1,303 @@
+/* ==========================================
+   MAIN PAGE
+========================================== */
+
+.project-page {
+ 
+  min-height: 100%;
+  padding: 20px 30px;
+  background: linear-gradient(135deg, #f4fbfc, #e6f7f9);
+  font-family: "Inter", "Segoe UI", sans-serif;
+  animation: fadeInPage 0.6s ease;
+}
+
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================
+   PAGE TITLE
+========================================== */
+
+
+
+/* ==========================================
+   GLASS CARD
+========================================== */
+
+.card {
+  backdrop-filter: blur(15px);
+  background: var(--glass);
+  padding: 25px;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 40px rgba(0, 119, 182, 0.08);
+  margin-bottom: 25px;
+}
+
+/* ==========================================
+   EMPLOYEE INPUT
+========================================== */
+
+.employee-card-theme{
+  width:100%;
+  padding:10px 40px;
+  border-radius:20px;
+
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+
+  border:1px solid rgba(255,255,255,0.4);
+}
+
+.employee-item{
+  display:flex;
+  align-items:center;
+  margin-bottom:8px;
+  font-size:18px;
+}
+
+.emp-label{
+  width:200px;
+  font-weight:700;
+  color:#1a2b3c;
+}
+
+.emp-value{
+  color:#2f3e4d;
+}
+
+.emp-role{
+  padding:5px 14px;
+  border-radius:20px;
+  font-size:14px;
+  font-weight:600;
+  
+  color:white;
+  background: var(--tomato);
+}
+
+
+/* ==========================================
+   ASSIGN ROW
+========================================== */
+
+.assign-row {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  gap: 15px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+/* ==========================================
+   BEAUTIFUL DROPDOWN
+========================================== */
+
+.dropdown-header {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.08);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s ease;
+  color: var(--text-dark);
+}
+
+.dropdown-header:hover {
+  box-shadow: 0 8px 18px rgba(0, 180, 216, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 60%;
+  max-height: 220px;
+  overflow-y: auto;
+  border-radius: 18px;
+  padding: 10px;
+  backdrop-filter: blur(18px);
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 20px 45px rgba(0, 119, 182, 0.15);
+  animation: dropdownFade 0.3s ease;
+  z-index: 10;
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar Styling */
+.dropdown-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+  background: var(--sea);
+  border-radius: 6px;
+}
+
+/* Dropdown Items */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 12px;
+  transition: 0.2s ease;
+  color: var(--text-dark);
+}
+
+.dropdown-item:hover {
+  background: rgba(0, 180, 216, 0.1);
+  transform: translateX(5px);
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.primary-btn {
+  padding: 12px 18px;
+  border-radius: 16px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--green);
+  color: #fff;
+  transition: 0.3s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+
+}
+
+.danger-btn {
+  margin-top: 15px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: rgba(255, 0, 0, 0.772);
+  color: #fff;
+  transition: 0.3s ease;
+}
+
+.danger-btn-div{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.danger-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(255, 120, 140, 0.3);
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.project-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 15px;
+  backdrop-filter: blur(15px);
+  background: var(--glass);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 119, 182, 0.08);
+}
+
+
+.project-table td {
+  padding: 14px 20px;
+  text-align: left;
+  font-size: var(--table-font);
+  color: var(--kala);
+}
+.project-table th{
+  padding: 14px 20px;
+  text-align: left;
+  font-size: var(--table-font);
+}
+
+.project-table thead {
+  background:var(--tomato);
+  color: white;
+}
+
+.project-table tbody tr {
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  transition: 0.2s ease;
+  font-size: var(--table-font);
+}
+
+.project-table tbody tr:nth-child(even) {
+  background: rgba(255,255,255,0.35);
+}
+
+.project-table tbody tr:hover {
+  background: rgba(255,255,255,0.6);
+}
+
+/* Checkbox */
+.checking {
+  transform: scale(1.1);
+  cursor: pointer;
+  accent-color: var(--sea);
+}
+
+/* ==========================================
+   LOADING
+========================================== */
+
+.loading {
+  margin-left: 240px;
+  text-align: center;
+  margin-top: 100px;
+  font-size: 18px;
+  color: var(--deep-sea);
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+  .project-page {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .assign-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dropdown-menu {
+    width: 100%;
+  }
+
+  .loading {
+    margin-left: 0;
+  }
+}
