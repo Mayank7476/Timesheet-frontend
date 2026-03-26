@@ -89,7 +89,7 @@
     const fetchInitialWeek = async () => {
       try {
         const res = await fetch(
-          `${BASE_URL}/api/timesheet/initial-Week`,
+          `${BASE_URL}/api/timesheet/initial-week`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
