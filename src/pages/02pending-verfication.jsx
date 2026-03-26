@@ -8,13 +8,18 @@ const getWeekDaysForPopup = (weekStartDate) => {
 
   return Array.from({ length: 7 }, (_, i) => {
     const d = new Date(start);
-    d.setDate(start.getDate() + i);
+    d.setUTCDate(start.getUTCDate() + i);
 
     return {
-      day: d.toLocaleDateString("en-US", { weekday: "long" }),
-      date: d.toLocaleDateString("en-GB"), // 10/11/2025
-      iso: d.toLocaleDateString("en-CA"), 
-      isHoliday:false,
+      day: d.toLocaleDateString("en-US", {
+        weekday: "long",
+        timeZone: "UTC",
+      }),
+      date: d.toLocaleDateString("en-GB", {
+        timeZone: "UTC",
+      }),
+      iso: d.toISOString().split("T")[0], // ✅ BEST
+      isHoliday: false,
     };
   });
 };
@@ -35,7 +40,9 @@ const [holidayDates, setHolidayDates] = useState([]);
 
   /* -------- DATE FORMATTER -------- */
   const formatDate = (d) =>
-    new Date(d).toLocaleDateString("en-GB");
+  new Date(d).toLocaleDateString("en-GB", {
+    timeZone: "UTC",
+  });
 
 
 
@@ -257,7 +264,7 @@ const savePopupTimesheet = async () => {
       return;
     }
     const hasZeroDay = popupDays.some((d, dayIndex) => {
-  const dayName = new Date(d.iso).getDay(); // 0 = Sun, 6 = Sat
+  const dayName = new Date(d.iso).getUTCDay(); // 0 = Sun, 6 = Sat
 
   // ✅ Skip Saturday & Sunday
   if (dayName === 0 || dayName === 6) return false;

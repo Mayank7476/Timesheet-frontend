@@ -1,69 +1,66 @@
   import React, { useEffect, useState } from "react";
   import "./01timesheet.css";
   import { autoAlert } from "../utility";
-  const COMPANY_TIMEZONE = "Asia/Kolkata";
   const MAX_HOURS = 9;
   const BASE_URL=import.meta.env.VITE_API_BASE_URL;
 
   /* ---------- TIME HELPERS ---------- */
 
-  const getCompanyNow = () =>
-    new Date(
-      new Date().toLocaleString("en-US", {
-        timeZone: COMPANY_TIMEZONE,
-      })
-      
-    );
+  const getCompanyNow = () => new Date();
 //     {
 //   return new Date("2026-02-20T10:00:00"); // 👈 set your custom date here
 // };
-
   const getCompanyMonday = () => {
     const now = getCompanyNow();
-    const day = now.getDay();
-    const diff = now.getDate() - day + (day === 0 ? -6 : 1);
-    now.setDate(diff);
-    now.setHours(0, 0, 0, 0);
-    return now;
+    const day = now.getUTCDay();
+    const diff = now.getUTCDate() - day + (day === 0 ? -6 : 1);
+     const monday = new Date(now);
+  monday.setUTCDate(diff);
+  monday.setUTCHours(0, 0, 0, 0);
+
+  return monday;
   };
 
   const addDays = (date, days) => {
-    const d = new Date(date);
-    d.setDate(d.getDate() + days);
-    return d;
-  };
+  const d = new Date(date);
+  d.setUTCDate(d.getUTCDate() + days);
+  return d;
+};
 
   const getWeekDays = (monday) => {
-    const today = getCompanyNow();
-    today.setHours(0, 0, 0, 0);
+  const today = getCompanyNow();
+  today.setUTCHours(0, 0, 0, 0);
 
-    return Array.from({ length: 7 }, (_, i) => {
-      const d = new Date(monday);
-      d.setDate(monday.getDate() + i);
+  return Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(monday);
+    d.setUTCDate(monday.getUTCDate() + i);
 
-      const isFuture = d.getTime() > today.getTime();
+    const isFuture = d.getTime() > today.getTime();
 
-      return {
-        label: d.toLocaleDateString("en-US", { weekday: "long" }),
-        dateLabel: d.toLocaleDateString("en-US", {
-          day: "2-digit",
-          month: "short",
-          year: "numeric",
-        }),
-        dateISO: d.toLocaleDateString("en-CA", {
-    timeZone: "Asia/Kolkata",}),
-        isHoliday: false,
-        isFuture,
-      };
-    });
-  };
+    return {
+      label: d.toLocaleDateString("en-US", {
+        weekday: "long",
+        timeZone: "UTC",
+      }),
+      dateLabel: d.toLocaleDateString("en-US", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        timeZone: "UTC",
+      }),
+      dateISO: d.toISOString().split("T")[0], // ✅ BEST for backend match
+      isHoliday: false,
+      isFuture,
+    };
+  });
+};
 
-  const formatWeekRange = (monday) => {
-    const sunday = addDays(monday, 6);
-    return `${monday.toLocaleDateString("en-GB")} - ${sunday.toLocaleDateString(
-      "en-GB"
-    )}`;
-  };
+ const formatWeekRange = (monday) => {
+  const sunday = addDays(monday, 6);
+
+  return `${monday.toLocaleDateString("en-GB", { timeZone: "UTC" })} - 
+          ${sunday.toLocaleDateString("en-GB", { timeZone: "UTC" })}`;
+};
 
   // ✅ Check if 17th rule applies
 
@@ -100,10 +97,10 @@
         const backendDate = new Date(data.weekStart);
 
         // Ensure Monday alignment on frontend too
-        const day = backendDate.getDay();
-        const diff =backendDate.getDate() - day + (day === 0 ? -6 : 1);
-        backendDate.setDate(diff);
-        backendDate.setHours(0, 0, 0, 0);
+        const day = backendDate.getUTCDay();
+        const diff =backendDate.getUTCDate() - day + (day === 0 ? -6 : 1);
+        backendDate.setUTCDate(diff);
+        backendDate.setUTCHours(0, 0, 0, 0);
 
         setWeekStart(backendDate);
         setMinWeekStart(backendDate);
@@ -326,11 +323,11 @@ const validateDayTotals = () => {
   const sunday = addDays(weekStart, 6);
 
   const today = getCompanyNow();
-  const todayDate = today.getDate();
+  const todayDate = today.getUTCDate();
 
   // ✅ Check if week contains 17
   const weekIncludes17 =
-    monday.getDate() <= 17 && sunday.getDate() >= 17;
+    monday.getUTCDate() <= 17 && sunday.getUTCDate() >= 17;
 
   // ✅ Partial allowed only on 17
   const isPartialDay = todayDate === 17 && weekIncludes17;
@@ -448,10 +445,10 @@ const validateDayTotals = () => {
   const sunday = addDays(monday, 6);
 
   const today = getCompanyNow();
-  const todayDate = today.getDate();
+  const todayDate = today.getUTCDate();
 
   const weekIncludes17 =
-    monday.getDate() <= 17 && sunday.getDate() >= 17;
+    monday.getUTCDate() <= 17 && sunday.getUTCDate() >= 17;
 
   return todayDate === 17 && weekIncludes17;
 };
@@ -476,7 +473,7 @@ const isFilledTill17 = () => {
     const total = getDayTotal(i);
 
     // extract date number (1–31)
-    const dayDate = new Date(d.dateISO).getDate();
+    const dayDate = new Date(d.dateISO).getUTCDate();
 
     // 👉 ONLY check till 17
     if (dayDate > 17) continue;
@@ -500,7 +497,7 @@ const isLockedTill17 = (dayIndex) => {
   }
 
   const d = days[dayIndex];
-  const dayDate = new Date(d.dateISO).getDate();
+  const dayDate = new Date(d.dateISO).getUTCDate();
 
   return dayDate <= 17; // 🔒 lock till 17
 };

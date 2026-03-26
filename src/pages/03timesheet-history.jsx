@@ -39,7 +39,11 @@ const TimesheetHistory = () => {
 
   // -------- DATE FORMATTER ----------
   const formatDate = (date) =>
-    date ? new Date(date).toLocaleDateString("en-GB") : "-";
+  date
+    ? new Date(date).toLocaleDateString("en-GB", {
+        timeZone: "UTC",
+      })
+    : "-";
 
   return (
     <div className="history-container">
