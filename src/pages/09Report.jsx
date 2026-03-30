@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import "./09Report.css";
 import {autoAlert} from "../utility";
 
 import * as XLSX from "xlsx";   // ⭐ NEW
 import { saveAs } from "file-saver";   // ⭐ NEW
+import Loader from "../component/loader";
 const BASE_URL=import.meta.env.VITE_API_BASE_URL;
 
 const Report = () => {
@@ -12,15 +13,17 @@ const Report = () => {
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [expandedRow, setExpandedRow] = useState(null);
+  const [loading,setLoading]=useState(false);
 
   const token = localStorage.getItem("token");
 
   const fetchReport = async () => {
-
+      setLoading(true);
     if (!fromDate || !toDate) {
       autoAlert("Please select date range");
       return;
     }
+
 
     try {
 
@@ -46,6 +49,9 @@ const Report = () => {
     } catch (error) {
       console.error("Failed to fetch report", error);
     }
+    finally{
+      setLoading(false);
+    }
   };
 
 
@@ -56,7 +62,7 @@ const exportToExcel = () => {
     autoAlert("No data to export");
     return;
   }
-
+ setLoading(true);
   const excelData = [];
 
   reports.forEach(emp => {
@@ -91,7 +97,7 @@ const exportToExcel = () => {
   });
 
   saveAs(data, `Timesheet_Report_${fromDate}_to_${toDate}.xlsx`);
-
+  setLoading(false);
 };
 
 const exportProjectReport = () => {
@@ -100,7 +106,7 @@ const exportProjectReport = () => {
     autoAlert("No data to export");
     return;
   }
-
+  setLoading(true);
   const projectMap = new Map();
 
   reports.forEach(emp => {
@@ -140,10 +146,10 @@ const exportProjectReport = () => {
   });
 
   saveAs(data, `Project_Report_${fromDate}_to_${toDate}.xlsx`);
-
+  setLoading(false);
 };
 
-
+  if(loading) return <Loader/>;
   return (
     <div className="report-bodies">
 

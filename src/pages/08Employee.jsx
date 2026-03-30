@@ -2,6 +2,7 @@ import React from 'react'
 import {useState,useEffect} from "react";
 import "./08Employee.css"
 import"./popup.css"
+import Loader from '../component/loader';
 const BASE_URL=import.meta.env.VITE_API_BASE_URL;
 
 const AllEmployee = () => {
@@ -15,9 +16,11 @@ const AllEmployee = () => {
     const [newPopUp, setNewPopUp] = useState(false);
     const [password,setPassword]=useState("");
     const [joiningDate,setJoiningDate]=useState("");
+    const [loading,setLoading]=useState(true);
 
     const token = localStorage.getItem("token");
     const fetchAlluser = async(e)=>{
+        setLoading(true);
         try{
             const res=await fetch(`${BASE_URL}/api/user/getAllUser`,{
                 headers:{Authorization:`Bearer ${token}`},
@@ -28,6 +31,9 @@ const AllEmployee = () => {
         }
         catch(error){
             alert("Server Error");
+        }
+        finally{
+          setLoading(false);
         }
     };
     useEffect(()=>{
@@ -46,7 +52,7 @@ const AllEmployee = () => {
 
 const updateEmployee = async (e)=>{
     e.preventDefault();
-
+    setLoading(true);
     try{
         const res = await fetch(
             `${BASE_URL}/api/user/updateUser/${selectedUser._id}`,
@@ -81,12 +87,15 @@ const updateEmployee = async (e)=>{
         console.error(error);
         alert("Server Error");
     }
-}
+    finally{
+      setLoading(false);
+    }
+};
 
 
 const addEmployee = async (e) => {
   e.preventDefault();
-
+  setLoading(true);
   try {
     const res = await fetch(
       `${BASE_URL}/api/auth/signup`,
@@ -119,9 +128,12 @@ const addEmployee = async (e) => {
     console.error(error);
     alert("Server Error");
   }
+  finally{
+    setLoading(false);
+  }
 };
    
- 
+ if(loading) return <Loader/>;
     return (
   <div className="employee-container">
     <h2 className="page-title">Employees</h2>

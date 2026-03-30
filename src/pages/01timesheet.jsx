@@ -1,6 +1,7 @@
   import React, { useEffect, useState } from "react";
   import "./01timesheet.css";
   import { autoAlert } from "../utility";
+  import Loader from "../component/loader"
   const MAX_HOURS = 9;
   const BASE_URL=import.meta.env.VITE_API_BASE_URL;
 
@@ -104,10 +105,9 @@
 
         setWeekStart(backendDate);
         setMinWeekStart(backendDate);
-        setLoading(false);
+        
       } catch (err) {
         console.error("Initial week fetch failed", err);
-        setLoading(false);
       }
     };
 
@@ -187,8 +187,15 @@
     if (!weekStart) return;
 
     const loadData = async () => {
+      setLoading(true);
+      try{
       await fetchWeek(weekStart);
-      await fetchLeaves(weekStart);
+      await fetchLeaves(weekStart);}
+      catch (err) {
+      console.error(err);}
+      finally {
+      setLoading(false); // ✅ STOP loader here
+    }
     };
 
     loadData();
@@ -505,7 +512,7 @@ const isLockedTill17 = (dayIndex) => {
 
     /* ---------- LOADING ---------- */
 
-    if (loading || !weekStart) return <div>Loading...</div>;
+    if (loading) return (<Loader text="loading"/>);
 
     /* ---------- UI ---------- */
 

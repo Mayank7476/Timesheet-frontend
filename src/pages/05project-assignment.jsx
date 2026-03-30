@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./05project-assignment.css";
 import {autoAlert} from "../utility";
+import Loader from "../component/loader";
 const BASE_URL=import.meta.env.VITE_API_BASE_URL;
 
 
@@ -14,7 +15,6 @@ const ProjectAssignment = () => {
   const [employeecode, setEmployeecode] = useState("");
   const [employeeEmail, setEmployeeEmail] = useState("");
   const [employeerole, setEmployeerole] = useState("");
-
   const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem("token");
@@ -50,7 +50,7 @@ const unassignedProjects = projects.filter(
     )
 );
 
-  if (loading) return <p className="loading">Loading projects...</p>;
+  if (loading) return <Loader/> ;
 
 
 

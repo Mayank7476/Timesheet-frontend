@@ -1,6 +1,7 @@
   import { useState,useEffect } from "react";
   import "./07projectgroup.css"
   import"./popup.css"
+  import Loader from "../component/loader";
   const BASE_URL=import.meta.env.VITE_API_BASE_URL;
 
   const ProjectGroup = () => {
@@ -11,6 +12,7 @@
     const [showEditModal, setShowEditModal] = useState(false);
     const [selectedGroup, setSelectedGroup] = useState(null);
     const[blocked,setBlocked]=useState(false);
+    const [loading,setLoading]=useState(true);
 
     const token = localStorage.getItem("token");
     const fetchgroup=async()=>{ 
@@ -25,15 +27,18 @@
       setGroup(data);
       }catch{
       alert("Failed to Load the groups");
+    }finally{
+      setLoading(false);
     }
     };
     useEffect(()=>{
         fetchgroup();
     },[]
-  );
+    );
     
-  const submitGroup=async (e) => {
+    const submitGroup=async (e) => {
     e.preventDefault();
+    setLoading(true);
     try{
       const res=await fetch(
         `${BASE_URL}/api/group/addGroup`,
@@ -63,19 +68,22 @@
       console.error(error);
       alert("Something went wrong");
     }
-  };
+    finally{
+      setLoading(false);
+    }
+    };
 
-  const openEditModal = (group) => {
+    const openEditModal = (group) => {
   setSelectedGroup(group);
   setGroupcode(group.groupId);
   setGroupName(group.groupName);
   setBlocked(group.blocked === "yes")
   setShowEditModal(true);
-};
+    };
 
-const updateGroup = async (e) => {
+    const updateGroup = async (e) => {
   e.preventDefault();
-
+setLoading(true);
   try {
     const res = await fetch(
       `${BASE_URL}/api/group/updateGrpById/${selectedGroup._id}`,
@@ -110,11 +118,14 @@ const updateGroup = async (e) => {
     console.error(error);
     alert("Update failed");
   }
-};
+  finally{
+    setLoading(false);
+  }
+    };
 
     
     
-    
+    if(loading) return <Loader/>;
       return (
         <>
       <div className="projectgroup-bodies" >

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import "./03timesheet-history.css";
+import Loader from "../component/loader";
 const BASE_URL=import.meta.env.VITE_API_BASE_URL;
 
 const TimesheetHistory = () => {
   const [activeTab, setActiveTab] = useState("submitted");
   const [timesheets, setTimesheets] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem("token");
 
@@ -45,6 +46,8 @@ const TimesheetHistory = () => {
       })
     : "-";
 
+    if(loading) return <Loader/>
+
   return (
     <div className="history-container">
       <h2 className="page-title">Timesheet-History</h2>
@@ -65,14 +68,14 @@ const TimesheetHistory = () => {
         </button>
       </div>
 
-      {loading && <p>Loading...</p>}
+      
 
-      {!loading && timesheets.length === 0 && (
+      {timesheets.length === 0 && (
         <p>No timesheets found</p>
       )}
 
       {/* TABLE */}
-      {!loading && timesheets.length > 0 && (
+      {timesheets.length > 0 && (
         <table className="history-table">
           <thead>
             <tr>

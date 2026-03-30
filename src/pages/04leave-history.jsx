@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import "./04leave-history.css";
+import Loader from "../component/loader";
 const BASE_URL=import.meta.env.VITE_API_BASE_URL;
 
 
 const LeaveHistory = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [loading,setLoading]=useState(true);
 
   // ✅ leave dates fetched from backend (YYYY-MM-DD)
   const [leaveDates, setLeaveDates] = useState([]);
@@ -43,6 +45,9 @@ const LeaveHistory = () => {
       } catch (error) {
         console.error("Failed to fetch leave history", error);
       }
+      finally{
+        setLoading(false);
+      }
     };
 
     fetchLeaves();
@@ -62,6 +67,8 @@ const LeaveHistory = () => {
 };
 
   /* ---------- Render ---------- */
+
+  if(loading) return <Loader/>;
   return (
     <div className="leave-container">
       <h2 className="page-title">Leave History</h2>

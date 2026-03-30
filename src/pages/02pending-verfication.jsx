@@ -1,6 +1,7 @@
 import "./02pending-verification.css"
 import { useEffect, useState } from "react";
 import { autoAlert } from "../utility";
+import Loader from "../component/loader";
 const BASE_URL=import.meta.env.VITE_API_BASE_URL;
 
 const getWeekDaysForPopup = (weekStartDate) => {
@@ -27,7 +28,7 @@ const getWeekDaysForPopup = (weekStartDate) => {
 
 const PendingVerification = () => {
   const [timesheets, setTimesheets] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [showViewPopup, setShowViewPopup] = useState(false);
 const [viewTimesheetData, setViewTimesheetData] = useState(null);
 const [isEditMode, setIsEditMode] = useState(false);
@@ -150,7 +151,7 @@ const getWeekTotal = () => {
   /* -------- VERIFY / APPROVE -------- */
   const verifyTimesheet = async (id) => {
    
-
+    setLoading(true);
     const res = await fetch(
       `${BASE_URL}/api/pending-verification/${id}/verify`,
       {
@@ -163,17 +164,21 @@ const getWeekTotal = () => {
 
     if (!res.ok) {
       autoAlert("Approval failed");
+      setLoading(false);
       return;
     }
 
     // remove approved timesheet from UI
     setTimesheets((prev) => prev.filter((t) => t._id !== id));
     autoAlert("Timesheet Verified");
+    setLoading(false);
+
   };
 
 
   //done------------------------------
     const viewTimesheet = async (id, edit = false) => {
+      setLoading(true);
     try {
       const res = await fetch(
         `${BASE_URL}/api/pending-verification/pop/${id}`,
@@ -193,6 +198,9 @@ const getWeekTotal = () => {
       setShowViewPopup(true);
     } catch {
       autoAlert("Failed to load timesheet");
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -325,7 +333,7 @@ const savePopupTimesheet = async () => {
 
 
 
-
+if(loading) return <Loader/>;
   return (
     <div  className="pending-container">
 

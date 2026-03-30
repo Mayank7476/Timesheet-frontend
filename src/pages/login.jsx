@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Loader from "../component/loader";
 import './login.css'
 import { autoAlert } from "../utility";
 const BASE_URL=import.meta.env.VITE_API_BASE_URL;
@@ -35,6 +36,7 @@ const LoginPage = ({setIsAuthenticated}) => {
       // 3️⃣ handle errors
       if (!response.ok) {
         autoAlert(data.message || "Login failed");
+        setLoading(false);
         return;
       }
 
@@ -42,11 +44,14 @@ const LoginPage = ({setIsAuthenticated}) => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("isLoggedIn", "true");
       setIsAuthenticated(true);
+      setLoading(false);
       // 5️⃣ redirect (optional)
       navigate("/timesheet",{replace:true});
     } catch (error) {
       alert("Server not reachable");
-      console.error(error);}
+      console.error(error);
+      setLoading(false);
+    }
     };
 
 const ssoLogin = (e) => {
@@ -70,7 +75,7 @@ const ssoLogin = (e) => {
 
 
 
-    
+    if(loading) return <Loader/>;
   return (
     <div className="container">
     <div className="images"></div>

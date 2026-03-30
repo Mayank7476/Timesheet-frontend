@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import "./06Projects.css"
 import"./popup.css"
+import Loader from "../component/loader";
 const BASE_URL=import.meta.env.VITE_API_BASE_URL;
 
 const Projects = () => {
@@ -13,6 +14,7 @@ const [projects,setProjects]=useState([]);
 const [newPopup, setnewPopup] = useState(false);
 const [editPopup, seteditPopup] = useState(false);
 const [selectedProject, setSelectedProject] = useState(null);
+const [loading,setLoading]=useState(true);
 
 
   // 🔹 Fetch groups from backend
@@ -34,7 +36,7 @@ const fetchProjects = async () => {
 
   const addProject = async (e) => {
   e.preventDefault();
-
+    setLoading(true);
   try {
     // 🔥 Find selected group object
     const selectedGroup = group.find(
@@ -81,6 +83,9 @@ const fetchProjects = async () => {
     console.error(error);
     alert("Something went wrong ❌");
   }
+  finally{
+    setLoading(false);
+  }
 };
 
   const fetchGroup=async()=>{
@@ -103,6 +108,7 @@ const fetchProjects = async () => {
   useEffect(() => {
     fetchProjects();
     fetchGroup();
+    setLoading(false);
   }, []);
 
  const handleEdit = (project) => {
@@ -116,7 +122,7 @@ const fetchProjects = async () => {
 
   const updateProject = async (e) => {
   e.preventDefault();
-
+    setLoading(true);
   try {
     const response = await fetch(
       `${BASE_URL}/api/project/updateProject/${selectedProject._id}`,
@@ -150,8 +156,11 @@ const fetchProjects = async () => {
     console.error(error);
     alert("Something went wrong ❌");
   }
+  finally{
+    setLoading(false);
+  }
 };
-
+if(loading) return <Loader/>;
   return (
     <>
     <div className="project-bodies">
