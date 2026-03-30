@@ -512,7 +512,7 @@ const isLockedTill17 = (dayIndex) => {
 
     /* ---------- LOADING ---------- */
 
-    if (loading) return (<Loader text="loading"/>);
+    if (loading) return (<Loader/>);
 
     /* ---------- UI ---------- */
 

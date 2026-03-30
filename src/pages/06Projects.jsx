@@ -106,9 +106,13 @@ const fetchProjects = async () => {
 
   // 🔹 Call API when component loads
   useEffect(() => {
+    try{
     fetchProjects();
     fetchGroup();
-    setLoading(false);
+    }
+    finally{
+      setLoading(false);
+    }
   }, []);
 
  const handleEdit = (project) => {
