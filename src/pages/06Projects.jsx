@@ -21,6 +21,7 @@ const [loading,setLoading]=useState(true);
  const token = localStorage.getItem("token");
 
 const fetchProjects = async () => {
+  setLoading(true);
   try {
     const res = await fetch(`${BASE_URL}/api/project/find`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -30,6 +31,9 @@ const fetchProjects = async () => {
     setProjects(data);
   } catch (error) {
     console.error("Error fetching projects:", error);
+  }
+  finally{
+    setLoading(false);
   }
 };
    
@@ -89,6 +93,7 @@ const fetchProjects = async () => {
 };
 
   const fetchGroup=async()=>{
+    setLoading(true);
     try{
       const res=await fetch(`${BASE_URL}/api/group/getGroup`,{
         headers:{
@@ -102,17 +107,17 @@ const fetchProjects = async () => {
     }catch{
     alert("Failed to Load the groups");
   }
+  finally{
+    setLoading(false);
+  }
   };
 
   // 🔹 Call API when component loads
   useEffect(() => {
-    try{
+    
     fetchProjects();
     fetchGroup();
-    }
-    finally{
-      setLoading(false);
-    }
+    
   }, []);
 
  const handleEdit = (project) => {
